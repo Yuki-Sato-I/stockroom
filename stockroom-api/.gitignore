@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### その他 ###
+app.jar
+spring.log*
+access_log

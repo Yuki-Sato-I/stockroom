@@ -1,0 +1,25 @@
+# 開発用に作成.hotreloadの設定等本番とk8sの設定が離れてしまうことが嫌だったため.
+version: '3.9'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: stockroom-api/Dockerfile
+    volumes:
+      - ./stockroom-api/:/stockroom-api/
+      - ~/.m2/:/root/.m2/
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=stockroom
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  postgres:

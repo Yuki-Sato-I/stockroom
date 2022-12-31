@@ -1,0 +1,29 @@
+server:
+  port: 8080
+  tomcat:
+    basedir: .
+    accesslog:
+      enabled: true
+      directory: access_log
+      suffix: .log
+      prefix: access_log
+      file-date-format: .yyyy-MM-dd
+logging:
+  level:
+    root: info
+  file:
+    name: spring.log
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/stockroom
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jackson:
+    time-zone: Asia/Tokyo
+    serialization:
+      indent-output: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
