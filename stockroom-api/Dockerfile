@@ -1,3 +1,4 @@
+## 未修正k8sデプロイように後でかえる
 FROM maven:3.8.6-eclipse-temurin-17-alpine
 
 WORKDIR /stockroom-api/

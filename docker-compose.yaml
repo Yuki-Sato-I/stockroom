@@ -8,8 +8,12 @@ services:
     volumes:
       - ./stockroom-api/:/stockroom-api/
       - ~/.m2/:/root/.m2/
+    working_dir: /stockroom-api
+    command: [mvn, spring-boot:run]
     depends_on:
       - postgres
+    ports:
+      - 8080:8080
   postgres:
     image: postgres:15-alpine
     container_name: postgres
@@ -21,5 +25,14 @@ services:
       - postgres:/var/lib/postgresql/data
     ports:
       - 5432:5432
+  front:
+    image: node:19.3-alpine
+    volumes:
+      - ./stockroom-front/:/stockroom-front/
+      - ./stockroom-front/node_modules/:/stockroom-front/node_modules/
+    working_dir: /stockroom-front
+    command: [sh, -c, yarn install && yarn start]
+    ports:
+      - "3000:3000"
 volumes:
   postgres:
